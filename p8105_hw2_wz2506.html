@@ -383,6 +383,91 @@ summary {
 ## * `` -&gt; ...16
 ## * `` -&gt; ...17</code></pre>
 <pre class="r"><code>view(trashwheel)</code></pre>
+<p>2017 precipitation data</p>
+<pre class="r"><code>precp2017 = read_excel(path =
+               &quot;./hw2_data/Trash-Wheel-Collection-Totals-8-6-19.xlsx&quot;
+               ,sheet=&quot;2017 Precipitation&quot;, na=&quot;&quot;, skip=1) %&gt;% ##read and clean data in 2017 Precipitation sheet file
+  drop_na('Total') %&gt;% ## omit rows without precipitation data
+  mutate(year = &quot;2017&quot;) ##add a variable year
+
+view(precp2017)</code></pre>
+<p>2018 precipitation data</p>
+<pre class="r"><code>precp2018 = read_excel(path = &quot;./hw2_data/Trash-Wheel-Collection-Totals-8-6-19.xlsx&quot;
+,sheet=&quot;2018 Precipitation&quot;, na=&quot;&quot;, skip=1) %&gt;% ####read and clean data in 2018 Precipitation sheet file
+  drop_na('Total') %&gt;% ## omit rows without precipitation data
+  mutate(year = &quot;2018&quot;) ##add a variable year
+
+view(precp2018)</code></pre>
+<pre class="r"><code>join_data = 
+  left_join(precp2017, precp2018, by = &quot;Month&quot;)%&gt;% ##combine data sets
+  mutate(Month = month.name[Month]) ##convert month to character variable
+
+view(join_data)</code></pre>
+<pre class="r"><code>##getting median of sports balls in 2017
+trashwheelnew = trashwheel %&gt;%
+  filter(Year == &quot;2017&quot;)
+
+median(pull(trashwheelnew, `Sports Balls`)) </code></pre>
+<pre><code>## [1] 8</code></pre>
+<p><code>There are 344 observations in the cleaned trash wheel dataset and 13 observations in the compiled precipitation dataset. Key variables in cleaned trash wheel dataset are weight, volume, plastic bottles, polystyrene, cigarette butts, glass bottles, grocery bags, chip bags, sports balls and homes powered. Key variables in compiles precipitation dataset are total precipitations in 2017 and each months and 2018 and each months. According to the compiled precipitation dataset, the total precipitation in 2018 is 70.33. Median number of the sports balls in a dumpster in 2017 is 8.</code></p>
+<p>##Problem 2</p>
+<pre class="r"><code>getwd()</code></pre>
+<pre><code>## [1] &quot;/Users/weiranzhang/p8105_hw2_wz2506&quot;</code></pre>
+<pre class="r"><code>polsmonth = read_csv(file = &quot;./hw2_data/fivethirtyeight_datasets/pols-month.csv&quot;) %&gt;% ##read data
+  separate(mon, c(&quot;year&quot;,&quot;month&quot;,&quot;day&quot;), sep = &quot;-&quot;) %&gt;% ##break mon variable
+  mutate(president = ifelse(prez_gop &gt; 0, &quot;gop&quot;, &quot;dem&quot;)) %&gt;% ##president variable taking values of prez_gop and prez_dem then indicate whether dem or gop. 
+  select(- prez_gop,
+         - prez_dem) %&gt;% ##remove prez_gop and prez_dem variables
+  mutate(month = as.character(month)) %&gt;% 
+  mutate(month = replace(month, month == '01', 'Jan'),
+         month = replace(month, month == '02', 'Feb'),
+         month = replace(month, month == '03', 'Mar'),
+         month = replace(month, month == '04', 'Apr'),
+         month = replace(month, month == '05', 'May'),
+         month = replace(month, month == '06', 'Jun'),
+         month = replace(month, month == '07', 'Jul'),
+         month = replace(month, month == '08', 'Aug'),
+         month = replace(month, month == '09', 'Sep'),
+         month = replace(month, month == '10', 'Oct'),
+         month = replace(month, month == '11', 'Nov'),
+         month = replace(month, month == '12', 'Dec'),
+  )</code></pre>
+<pre><code>## Parsed with column specification:
+## cols(
+##   mon = col_date(format = &quot;&quot;),
+##   prez_gop = col_double(),
+##   gov_gop = col_double(),
+##   sen_gop = col_double(),
+##   rep_gop = col_double(),
+##   prez_dem = col_double(),
+##   gov_dem = col_double(),
+##   sen_dem = col_double(),
+##   rep_dem = col_double()
+## )</code></pre>
+<pre class="r"><code>view(polsmonth)</code></pre>
+<pre class="r"><code>snp = read_csv(file = &quot;./hw2_data/fivethirtyeight_datasets/snp.csv&quot;) %&gt;% ##read data
+  separate(date, c(&quot;day&quot;,&quot;month&quot;,&quot;year&quot;), sep = &quot;/&quot;) %&gt;% ##break date variable
+  select(year, month, everything()) %&gt;% ##make year and month leading cols
+  mutate(month = as.character(month)) %&gt;% 
+  mutate(month = replace(month, month == '1', 'Jan'),
+         month = replace(month, month == '2', 'Feb'),
+         month = replace(month, month == '3', 'Mar'),
+         month = replace(month, month == '4', 'Apr'),
+         month = replace(month, month == '5', 'May'),
+         month = replace(month, month == '6', 'Jun'),
+         month = replace(month, month == '7', 'Jul'),
+         month = replace(month, month == '8', 'Aug'),
+         month = replace(month, month == '9', 'Sep'),
+         month = replace(month, month == '10', 'Oct'),
+         month = replace(month, month == '11', 'Nov'),
+         month = replace(month, month == '12', 'Dec'),
+  )</code></pre>
+<pre><code>## Parsed with column specification:
+## cols(
+##   date = col_character(),
+##   close = col_double()
+## )</code></pre>
+<pre class="r"><code>view(snp)</code></pre>
 
 
 
