@@ -135,6 +135,15 @@ view(join_data2)
 ```
 
 
+```{r}
+##get dimensions of data
+dim(polsmonth)
+dim(snp)
+dim(unemployment)
+dim(join_data2)
+```
+
+
 
 
 
