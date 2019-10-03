@@ -403,6 +403,12 @@ view(precp2018)</code></pre>
   mutate(Month = month.name[Month]) ##convert month to character variable
 
 view(join_data)</code></pre>
+<pre class="r"><code>##getting median of sports balls in 2017
+trashwheelnew = trashwheel %&gt;%
+  filter(Year == &quot;2017&quot;)
+
+median(pull(trashwheelnew, `Sports Balls`)) </code></pre>
+<pre><code>## [1] 8</code></pre>
 
 
 

@@ -59,6 +59,14 @@ view(join_data)
 
 ```
 
+```{r}
+##getting median of sports balls in 2017
+trashwheelnew = trashwheel %>%
+  filter(Year == "2017")
+
+median(pull(trashwheelnew, `Sports Balls`)) 
+```
+
 
 
 
