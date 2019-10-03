@@ -190,6 +190,20 @@ view(table2)
 
 ```
 
+```{r}
+##scatterplot
+babynamesscatterplot = babynames %>%
+  filter(Gender == "MALE", `Year of Birth` == "2016", Ethnicity == "WHITE NON HISPANIC") %>%
+  distinct() 
+  
+view(babynamesscatterplot)
+  
+  
+ggplot(babynamesscatterplot, aes(x = Rank, y = Count)) + 
+  geom_point()
+```
+
+
 
 
 
