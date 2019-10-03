@@ -468,6 +468,41 @@ median(pull(trashwheelnew, `Sports Balls`)) </code></pre>
 ##   close = col_double()
 ## )</code></pre>
 <pre class="r"><code>view(snp)</code></pre>
+<pre class="r"><code>unemployment = read_csv(file =
+                  &quot;./hw2_data/fivethirtyeight_datasets/unemployment.csv&quot;) </code></pre>
+<pre><code>## Parsed with column specification:
+## cols(
+##   Year = col_double(),
+##   Jan = col_double(),
+##   Feb = col_double(),
+##   Mar = col_double(),
+##   Apr = col_double(),
+##   May = col_double(),
+##   Jun = col_double(),
+##   Jul = col_double(),
+##   Aug = col_double(),
+##   Sep = col_double(),
+##   Oct = col_double(),
+##   Nov = col_double(),
+##   Dec = col_double()
+## )</code></pre>
+<pre class="r"><code>unemploymentlong = gather(unemployment, month, measurement, Jan:Feb:Mar:Apr:May:Jun:Jul:Aug:Sep:Oct:Nov:Dec, factor_key = TRUE)</code></pre>
+<pre><code>## Warning in x:y: numerical expression has 2 elements: only the first used</code></pre>
+<pre><code>## Warning in x:y: numerical expression has 3 elements: only the first used</code></pre>
+<pre><code>## Warning in x:y: numerical expression has 4 elements: only the first used</code></pre>
+<pre><code>## Warning in x:y: numerical expression has 5 elements: only the first used</code></pre>
+<pre><code>## Warning in x:y: numerical expression has 6 elements: only the first used</code></pre>
+<pre><code>## Warning in x:y: numerical expression has 7 elements: only the first used</code></pre>
+<pre><code>## Warning in x:y: numerical expression has 8 elements: only the first used</code></pre>
+<pre><code>## Warning in x:y: numerical expression has 9 elements: only the first used</code></pre>
+<pre><code>## Warning in x:y: numerical expression has 10 elements: only the first used</code></pre>
+<pre><code>## Warning in x:y: numerical expression has 11 elements: only the first used</code></pre>
+<pre class="r"><code>polssnp = left_join(polsmonth, snp, by = c(&quot;year&quot;, &quot;month&quot;))
+
+join_data2 = left_join(polssnp, unemploymentlong, by = &quot;month&quot;)</code></pre>
+<pre><code>## Warning: Column `month` joining character vector and factor, coercing into
+## character vector</code></pre>
+<pre class="r"><code>view(join_data2)</code></pre>
 
 
 

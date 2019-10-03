@@ -120,6 +120,20 @@ view(snp)
 
 ```
 
+```{r}
+unemployment = read_csv(file =
+                  "./hw2_data/fivethirtyeight_datasets/unemployment.csv") 
+
+
+unemploymentlong = gather(unemployment, month, measurement, Jan:Feb:Mar:Apr:May:Jun:Jul:Aug:Sep:Oct:Nov:Dec, factor_key = TRUE)
+  
+polssnp = left_join(polsmonth, snp, by = c("year", "month"))
+
+join_data2 = left_join(polssnp, unemploymentlong, by = "month")
+
+view(join_data2)
+```
+
 
 
 
