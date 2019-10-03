@@ -445,6 +445,29 @@ median(pull(trashwheelnew, `Sports Balls`)) </code></pre>
 ##   rep_dem = col_double()
 ## )</code></pre>
 <pre class="r"><code>view(polsmonth)</code></pre>
+<pre class="r"><code>snp = read_csv(file = &quot;./hw2_data/fivethirtyeight_datasets/snp.csv&quot;) %&gt;% ##read data
+  separate(date, c(&quot;day&quot;,&quot;month&quot;,&quot;year&quot;), sep = &quot;/&quot;) %&gt;% ##break date variable
+  select(year, month, everything()) %&gt;% ##make year and month leading cols
+  mutate(month = as.character(month)) %&gt;% 
+  mutate(month = replace(month, month == '1', 'Jan'),
+         month = replace(month, month == '2', 'Feb'),
+         month = replace(month, month == '3', 'Mar'),
+         month = replace(month, month == '4', 'Apr'),
+         month = replace(month, month == '5', 'May'),
+         month = replace(month, month == '6', 'Jun'),
+         month = replace(month, month == '7', 'Jul'),
+         month = replace(month, month == '8', 'Aug'),
+         month = replace(month, month == '9', 'Sep'),
+         month = replace(month, month == '10', 'Oct'),
+         month = replace(month, month == '11', 'Nov'),
+         month = replace(month, month == '12', 'Dec'),
+  )</code></pre>
+<pre><code>## Parsed with column specification:
+## cols(
+##   date = col_character(),
+##   close = col_double()
+## )</code></pre>
+<pre class="r"><code>view(snp)</code></pre>
 
 
 

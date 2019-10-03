@@ -97,6 +97,30 @@ view(polsmonth)
 ```
 
 
+```{r}
+snp = read_csv(file = "./hw2_data/fivethirtyeight_datasets/snp.csv") %>% ##read data
+  separate(date, c("day","month","year"), sep = "/") %>% ##break date variable
+  select(year, month, everything()) %>% ##make year and month leading cols
+  mutate(month = as.character(month)) %>% 
+  mutate(month = replace(month, month == '1', 'Jan'),
+         month = replace(month, month == '2', 'Feb'),
+         month = replace(month, month == '3', 'Mar'),
+         month = replace(month, month == '4', 'Apr'),
+         month = replace(month, month == '5', 'May'),
+         month = replace(month, month == '6', 'Jun'),
+         month = replace(month, month == '7', 'Jul'),
+         month = replace(month, month == '8', 'Aug'),
+         month = replace(month, month == '9', 'Sep'),
+         month = replace(month, month == '10', 'Oct'),
+         month = replace(month, month == '11', 'Nov'),
+         month = replace(month, month == '12', 'Dec'),
+  )
+  
+view(snp)
+
+```
+
+
 
 
 
