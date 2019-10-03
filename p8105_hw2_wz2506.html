@@ -410,6 +410,41 @@ trashwheelnew = trashwheel %&gt;%
 median(pull(trashwheelnew, `Sports Balls`)) </code></pre>
 <pre><code>## [1] 8</code></pre>
 <p><code>There are 344 observations in the cleaned trash wheel dataset and 13 observations in the compiled precipitation dataset. Key variables in cleaned trash wheel dataset are weight, volume, plastic bottles, polystyrene, cigarette butts, glass bottles, grocery bags, chip bags, sports balls and homes powered. Key variables in compiles precipitation dataset are total precipitations in 2017 and each months and 2018 and each months. According to the compiled precipitation dataset, the total precipitation in 2018 is 70.33. Median number of the sports balls in a dumpster in 2017 is 8.</code></p>
+<p>##Problem 2</p>
+<pre class="r"><code>getwd()</code></pre>
+<pre><code>## [1] &quot;/Users/weiranzhang/p8105_hw2_wz2506&quot;</code></pre>
+<pre class="r"><code>polsmonth = read_csv(file = &quot;./hw2_data/fivethirtyeight_datasets/pols-month.csv&quot;) %&gt;% ##read data
+  separate(mon, c(&quot;year&quot;,&quot;month&quot;,&quot;day&quot;), sep = &quot;-&quot;) %&gt;% ##break mon variable
+  mutate(president = ifelse(prez_gop &gt; 0, &quot;gop&quot;, &quot;dem&quot;)) %&gt;% ##president variable taking values of prez_gop and prez_dem then indicate whether dem or gop. 
+  select(- prez_gop,
+         - prez_dem) %&gt;% ##remove prez_gop and prez_dem variables
+  mutate(month = as.character(month)) %&gt;% 
+  mutate(month = replace(month, month == '01', 'Jan'),
+         month = replace(month, month == '02', 'Feb'),
+         month = replace(month, month == '03', 'Mar'),
+         month = replace(month, month == '04', 'Apr'),
+         month = replace(month, month == '05', 'May'),
+         month = replace(month, month == '06', 'Jun'),
+         month = replace(month, month == '07', 'Jul'),
+         month = replace(month, month == '08', 'Aug'),
+         month = replace(month, month == '09', 'Sep'),
+         month = replace(month, month == '10', 'Oct'),
+         month = replace(month, month == '11', 'Nov'),
+         month = replace(month, month == '12', 'Dec'),
+  )</code></pre>
+<pre><code>## Parsed with column specification:
+## cols(
+##   mon = col_date(format = &quot;&quot;),
+##   prez_gop = col_double(),
+##   gov_gop = col_double(),
+##   sen_gop = col_double(),
+##   rep_gop = col_double(),
+##   prez_dem = col_double(),
+##   gov_dem = col_double(),
+##   sen_dem = col_double(),
+##   rep_dem = col_double()
+## )</code></pre>
+<pre class="r"><code>view(polsmonth)</code></pre>
 
 
 
