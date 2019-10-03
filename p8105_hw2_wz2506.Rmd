@@ -161,6 +161,35 @@ view(babynames)
 
 ```
 
+```{r}
+
+##table 1
+babynamestable1 = babynames %>%
+  select(everything(), -Count) %>%
+  filter(Gender == "FEMALE", `Child's First Name` == "Olivia") %>%
+  distinct()
+  
+table1 = pivot_wider(babynamestable1, 
+            names_from = `Year of Birth`,
+            values_from = Rank) %>%
+  select(-`Child's First Name`, -Gender)
+view(table1)
+
+
+##table 2
+babynamestable2 = babynames %>%
+  select(everything(), -Count) %>%
+  filter(Gender == "MALE", Rank == "1") %>%
+  distinct()
+
+table2 = pivot_wider(babynamestable2, 
+            names_from = `Year of Birth`,
+            values_from = `Child's First Name`) %>%
+  select(-Rank, -Gender)
+view(table2)
+
+```
+
 
 
 

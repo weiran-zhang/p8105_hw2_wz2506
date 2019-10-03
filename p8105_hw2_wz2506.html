@@ -536,6 +536,30 @@ dim(polsmonth)</code></pre>
 <pre class="r"><code>view(babynames)
 
 ##what does it mean by &quot;categorical predictor and the case structure of string variables changed over time&quot;??</code></pre>
+<pre class="r"><code>##table 1
+babynamestable1 = babynames %&gt;%
+  select(everything(), -Count) %&gt;%
+  filter(Gender == &quot;FEMALE&quot;, `Child's First Name` == &quot;Olivia&quot;) %&gt;%
+  distinct()
+  
+table1 = pivot_wider(babynamestable1, 
+            names_from = `Year of Birth`,
+            values_from = Rank) %&gt;%
+  select(-`Child's First Name`, -Gender)
+view(table1)
+
+
+##table 2
+babynamestable2 = babynames %&gt;%
+  select(everything(), -Count) %&gt;%
+  filter(Gender == &quot;MALE&quot;, Rank == &quot;1&quot;) %&gt;%
+  distinct()
+
+table2 = pivot_wider(babynamestable2, 
+            names_from = `Year of Birth`,
+            values_from = `Child's First Name`) %&gt;%
+  select(-Rank, -Gender)
+view(table2)</code></pre>
 
 
 
