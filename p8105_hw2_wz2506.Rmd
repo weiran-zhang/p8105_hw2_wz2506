@@ -143,6 +143,9 @@ dim(unemployment)
 dim(join_data2)
 ```
 
+`Dimensions for pols-month is 822rows*10cols(variables), for snp is 787*4, for unemployment is 68*13, for unemploymentlong is 816*3, for joined dataset is 94588*14. Range of year for pols-month dataste is 1947-2015, for snp dataset is 1950-2015, for unemployment is 1948-2015. The Key variables are year, month, day, close data, measurement data and parties presidents belong to.`
+
+
 
 
 
