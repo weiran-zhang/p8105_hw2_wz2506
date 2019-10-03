@@ -39,6 +39,17 @@ view(precp2017)
 
 ```
 
+2018 precipitation data
+```{r}
+precp2018 = read_excel(path = "./hw2_data/Trash-Wheel-Collection-Totals-8-6-19.xlsx"
+,sheet="2018 Precipitation", na="", skip=1) %>% ####read and clean data in 2018 Precipitation sheet file
+  drop_na('Total') %>% ## omit rows without precipitation data
+  mutate(year = "2018") ##add a variable year
+
+view(precp2018)
+
+```
+
 
 
 

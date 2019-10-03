@@ -391,6 +391,13 @@ summary {
   mutate(year = &quot;2017&quot;) ##add a variable year
 
 view(precp2017)</code></pre>
+<p>2018 precipitation data</p>
+<pre class="r"><code>precp2018 = read_excel(path = &quot;./hw2_data/Trash-Wheel-Collection-Totals-8-6-19.xlsx&quot;
+,sheet=&quot;2018 Precipitation&quot;, na=&quot;&quot;, skip=1) %&gt;% ####read and clean data in 2018 Precipitation sheet file
+  drop_na('Total') %&gt;% ## omit rows without precipitation data
+  mutate(year = &quot;2018&quot;) ##add a variable year
+
+view(precp2018)</code></pre>
 
 
 
