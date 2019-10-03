@@ -1,0 +1,27 @@
+---
+title: "p8105_hw2_wz2506"
+author: "Weiran Zhang"
+date: "10/2/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+library(readxl)
+```
+
+##Problem 1
+```{r}
+getwd()
+trashwheel = read_excel(path =
+               "./hw2_data/Trash-Wheel-Collection-Totals-8-6-19.xlsx",
+             sheet="Mr. Trash Wheel", na = "") %>% ##load data and specify the sheet in Excel file
+  drop_na(Dumpster) %>% ##omit rows that do not include dumpster-specific data
+  select(-...15, -...16, -...17) %>% ##omit non-data entries
+  mutate(`Sports Balls` = as.integer(`Sports Balls`)) ##convert Sports Balls to integer variable
+
+view(trashwheel)
+
+```
