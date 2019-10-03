@@ -2,7 +2,7 @@
 title: "p8105_hw2_wz2506"
 author: "Weiran Zhang"
 date: "10/2/2019"
-output: html_document
+output: github_document
 ---
 
 ```{r setup, include=FALSE}
