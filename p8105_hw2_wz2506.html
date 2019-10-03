@@ -398,6 +398,11 @@ view(precp2017)</code></pre>
   mutate(year = &quot;2018&quot;) ##add a variable year
 
 view(precp2018)</code></pre>
+<pre class="r"><code>join_data = 
+  left_join(precp2017, precp2018, by = &quot;Month&quot;)%&gt;% ##combine data sets
+  mutate(Month = month.name[Month]) ##convert month to character variable
+
+view(join_data)</code></pre>
 
 
 
